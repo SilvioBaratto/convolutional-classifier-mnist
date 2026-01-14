@@ -1,0 +1,15 @@
+# PyTorch (uses MPS acceleration on Apple Silicon, CPU on other systems)
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Core dependencies
+numpy>=1.24.0,<2.4.0
+matplotlib>=3.7.0
+Pillow>=9.5.0
+
+# Optional
+torchinfo>=1.8.0
+imageio>=2.31.0
+
+# CLI
+rich>=13.0.0
