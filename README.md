@@ -40,7 +40,7 @@ python cli.py visualize --checkpoint ./checkpoints/best_model.pth --output ./vis
 
 ### Step 0: Training Data Structure
 
-![Training Dataset](visualizations/00a_training_dataset.png)
+![Training Dataset](docs/images/00a_training_dataset.png)
 
 The network learns from labeled examples. Each training sample has:
 - **Image**: 28×28 grayscale pixels (input)
@@ -50,7 +50,7 @@ The image flows through the network, and the label is used *only at the end* to 
 
 ### Step 1: Input Image
 
-![Input](visualizations/00b_input.png)
+![Input](docs/images/00b_input.png)
 
 A 28×28 grayscale image where each pixel is a value between 0 (black) and 1 (white). This is what the network "sees".
 
@@ -60,7 +60,7 @@ A 28×28 grayscale image where each pixel is a value between 0 (black) and 1 (wh
 
 #### Convolution (32 filters, 3×3)
 
-![Conv1](visualizations/01_conv1.png)
+![Conv1](docs/images/01_conv1.png)
 
 **What is convolution?** A small 3×3 filter slides across the image, computing dot products at each position. Each filter learns to detect a specific pattern (edges, curves, etc.).
 
@@ -69,19 +69,19 @@ A 28×28 grayscale image where each pixel is a value between 0 (black) and 1 (wh
 
 #### Batch Normalization
 
-![BatchNorm1](visualizations/02_batchnorm1.png)
+![BatchNorm1](docs/images/02_batchnorm1.png)
 
 Normalizes the activations to have zero mean and unit variance. This stabilizes training and allows higher learning rates.
 
 #### ReLU Activation
 
-![ReLU1](visualizations/03_relu1.png)
+![ReLU1](docs/images/03_relu1.png)
 
 `ReLU(x) = max(0, x)` - Sets all negative values to zero. This introduces non-linearity, allowing the network to learn complex patterns.
 
 #### Max Pooling (2×2)
 
-![Pool1](visualizations/04_pool1.png)
+![Pool1](docs/images/04_pool1.png)
 
 Reduces spatial dimensions by taking the maximum value in each 2×2 region:
 - Input: (32, 28, 28)
@@ -93,8 +93,8 @@ This provides translation invariance and reduces computation.
 
 ### Convolutional Block 2: Higher-Level Features
 
-![Conv2](visualizations/05_conv2.png)
-![Pool2](visualizations/08_pool2.png)
+![Conv2](docs/images/05_conv2.png)
+![Pool2](docs/images/08_pool2.png)
 
 The second block detects combinations of the basic features from Block 1:
 - Input: (32, 14, 14)
@@ -105,8 +105,8 @@ The second block detects combinations of the basic features from Block 1:
 
 ### Convolutional Block 3: Abstract Features
 
-![Conv3](visualizations/09_conv3.png)
-![Pool3](visualizations/12_pool3.png)
+![Conv3](docs/images/09_conv3.png)
+![Pool3](docs/images/12_pool3.png)
 
 The third block learns the most abstract features:
 - Input: (64, 7, 7)
@@ -121,19 +121,19 @@ At this stage, the network has learned digit-specific patterns.
 
 #### Flatten
 
-![Flatten](visualizations/13_flatten.png)
+![Flatten](docs/images/13_flatten.png)
 
 Converts the 3D feature maps (128, 3, 3) into a 1D vector of 1,152 values.
 
 #### FC1: Feature Combination
 
-![FC1](visualizations/14_fc1.png)
+![FC1](docs/images/14_fc1.png)
 
 A fully connected layer with 256 neurons. Each neuron sees all 1,152 input features and learns to combine them.
 
 #### Dropout (0.5)
 
-![Dropout](visualizations/16_dropout.png)
+![Dropout](docs/images/16_dropout.png)
 
 During training, randomly sets 50% of neurons to zero. This prevents overfitting by forcing the network to learn redundant representations.
 
@@ -143,13 +143,13 @@ During training, randomly sets 50% of neurons to zero. This prevents overfitting
 
 #### Logits (Raw Scores)
 
-![Logits](visualizations/17_logits.png)
+![Logits](docs/images/17_logits.png)
 
 The final layer outputs 10 values (one per digit). These are raw scores called **logits** - higher values indicate more confidence.
 
 #### Softmax → Probabilities
 
-![Probabilities](visualizations/18_probabilities.png)
+![Probabilities](docs/images/18_probabilities.png)
 
 Softmax converts logits to probabilities that sum to 1:
 
@@ -163,7 +163,7 @@ The predicted digit is the one with highest probability.
 
 ### Training: How the Network Learns
 
-![Learning](visualizations/19_learning_from_labels.png)
+![Learning](docs/images/19_learning_from_labels.png)
 
 1. **Forward Pass**: Image flows through network → prediction
 2. **Loss Calculation**: Compare prediction with true label using Cross-Entropy Loss
@@ -174,7 +174,7 @@ This cycle repeats for thousands of images until the network learns.
 
 #### Final Prediction
 
-![Prediction](visualizations/20_prediction_summary.png)
+![Prediction](docs/images/20_prediction_summary.png)
 
 ---
 
@@ -253,7 +253,7 @@ python cli.py info  # Show model architecture
 │   │   ├── visualize.py       # Network visualization (21 images)
 │   │   └── gradient_visualizer.py
 │   └── utils/
-├── visualizations/             # Generated visualization images
+├── docs/images/                # Documentation images (CNN explanation)
 ├── checkpoints/                # Saved model weights
 └── test/                       # Sample test images
 ```
